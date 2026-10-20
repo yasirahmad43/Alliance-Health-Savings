@@ -7,7 +7,7 @@ in the family, and none of it depicts a real, identifiable person.
 
 | File(s) | What it shows | Used on |
 |---|---|---|
-| `film-home.mp4/.webp` | Multigenerational family walking a park at golden hour | Homepage hero |
+| `film-home.mp4/.webp` | Family of four laughing together on their front porch | Homepage hero |
 | `film-about` | Advisors with headsets in a bright office | /about hero |
 | `film-compare` | Couple comparing options on a laptop in a kitchen | /compare hero |
 | `film-contact` | Woman on a phone call in a bright living room | /contact hero |
