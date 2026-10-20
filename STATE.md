@@ -1,6 +1,18 @@
 # Alliance Health Savings — STATE
 
-**Mode:** build · **Status:** first build, deploying to Vercel.
+**Mode:** build · **Status:** LIVE on Vercel, awaiting operator values.
+
+## Live
+- Production: https://alliance-health-savings.vercel.app
+- Vercel project `alliance-health-savings` (prj_ftW0CYzq4lBJeWlcz1nq1RRIqDV4, team yasirahmad43s-projects),
+  linked to github.com/yasirahmad43/Alliance-Health-Savings — a push to `claude/sweet-carson-qwb59k`
+  (the repo's default branch) redeploys production. Vercel Authentication applies to previews only.
+- Env set: `NEXT_PUBLIC_SITE_URL` = https://alliance-health-savings.vercel.app (change when the domain is pointed).
+
+## Verified 2026-10-20
+- `next build` + `tsc --noEmit` clean, 75 routes.
+- Zero horizontal scroll on 13 routes x 320/360/390/430px.
+- Production returns 200 with Alliance branding; no "American Healthcare Choice" string anywhere in src.
 
 Cloned from the American Healthcare Choice codebase (same chassis, same locked
 survey/comparison/lead plumbing) and rebranded: navy + teal palette from the
