@@ -1,0 +1,76 @@
+import SurveyForm from "@/components/SurveyForm";
+
+const BULLETS = [
+  "Pre-existing conditions covered",
+  "Nationwide PPO doctor and hospital networks",
+  "Apply any day of the year — no enrollment window",
+  "One licensed advisor, not a call center",
+  "No pressure and no obligation to enroll",
+];
+
+export default function Hero() {
+  return (
+    <section className="relative isolate overflow-hidden bg-brand-primary-strong text-white">
+      {/* Background film at full strength. On desktop only the left side
+          carries a gradient, so the headline reads and the footage stays
+          clearly visible across the rest of the frame. On phones the film
+          sits above the copy with no wash at all. */}
+      <div className="relative h-60 w-full sm:h-80 lg:absolute lg:inset-0 lg:h-full">
+        <video
+          className="size-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/media/film-home.webp"
+          aria-hidden="true"
+        >
+          <source src="/media/film-home.mp4" type="video/mp4" />
+        </video>
+        <div
+          className="absolute inset-0 hidden bg-[linear-gradient(90deg,#0e2547e6_0%,#0e2547b3_38%,#0e254733_68%,#0e25471a_100%)] lg:block"
+          aria-hidden="true"
+        />
+      </div>
+
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_28rem] lg:items-stretch lg:gap-16 lg:py-24">
+        <div className="flex flex-col">
+          <span className="eyebrow eyebrow-dark">Licensed advisors in all 50 states</span>
+
+          <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] sm:text-6xl lg:text-[4.25rem]">
+            Real health coverage.
+            <br />
+            Reviewed by a person.
+            <br />
+            <span className="accent-on-dark">Not a call center.</span>
+          </h1>
+
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+            Private PPO plans you can apply for any day of the year — with
+            pre-existing conditions covered. Tell us what you need and one
+            licensed advisor reviews it with you. Real options. Real advisors.
+            Zero pressure.
+          </p>
+
+          <ul className="mt-8 grid max-w-xl gap-3 lg:mt-auto lg:pt-10">
+            {BULLETS.map((b) => (
+              <li key={b} className="flex items-center gap-3 text-[16px] font-medium leading-snug">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-accent" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="size-3.5 text-white">
+                    <path d="m5 12.5 4.5 4.5L19 7.5" />
+                  </svg>
+                </span>
+                {b}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div id="find-my-plans" className="scroll-mt-28">
+          <SurveyForm formLocation="homepage-hero" variant="hero" />
+        </div>
+      </div>
+    </section>
+  );
+}

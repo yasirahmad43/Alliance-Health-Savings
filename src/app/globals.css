@@ -1,0 +1,343 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Alliance Health Savings — design tokens.
+   Palette is navy + teal, sampled from the logo (see BRAND.md), plus white and
+   a navy-biased ink for type. Every other role is a tint or shade of navy or
+   teal — there is deliberately no grey, no cream, and no third hue anywhere.
+   The logo's bright teal (#22aec7) is decorative only; the accent used for
+   text and filled buttons is a deeper teal that passes contrast on white.
+   Components reference these roles, never raw hex.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-brand-primary: #173966;
+  --color-brand-primary-strong: #0e2547;
+  --color-brand-secondary: #1f5a96;
+  --color-brand-accent: #0b7f97;
+  --color-brand-accent-strong: #096a7f;
+  --color-brand-bright: #22aec7;
+  --color-brand-bright-soft: #3cc3db;
+  --color-brand-ink: #0d1c33;
+  --color-brand-surface: #ffffff;
+  --color-brand-tint: #ecf6f9;
+  --color-brand-canvas: #f4fafb;
+  --color-brand-success: #173966;
+  --color-brand-danger: #b3261e;
+
+  /* Hairlines and washes derived from the base hues, so nothing reads as grey. */
+  --color-brand-rule: #1739661a;
+  --color-brand-rule-strong: #17396633;
+  --color-brand-wash: #1739660a;
+  --color-brand-accent-wash: #0b7f9712;
+
+  --font-display: var(--font-jakarta), "Helvetica Neue", system-ui, sans-serif;
+  --font-body: var(--font-nunito-sans), system-ui, -apple-system, sans-serif;
+
+  /* Navy-tinted, layered shadows — one light source, top-down. */
+  --shadow-card: 0 1px 2px #0e25470a, 0 8px 24px -6px #0e254714;
+  --shadow-lift: 0 2px 4px #0e25470d, 0 24px 60px -12px #0e25472e;
+  --shadow-cta: 0 10px 28px -8px #0b7f9773;
+
+  --ease-brand: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Horizontal-scroll backstop. The cause always gets fixed at the component
+   level; this only stops a regression reaching a visitor. */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-brand-surface);
+  color: var(--color-brand-ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer base {
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+}
+h1 { letter-spacing: -0.02em; }
+p { text-wrap: pretty; }
+}
+
+@layer components {
+/* Figures that line up in columns — comparison table, stats band. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Section label: a quiet pill in sentence case, never shouting capitals. */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: fit-content;
+  border-radius: 999px;
+  background: var(--eyebrow-bg, var(--color-brand-accent-wash));
+  color: var(--eyebrow-fg, var(--color-brand-accent));
+  box-shadow: var(--eyebrow-ring, none);
+  padding: 0.4rem 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+.eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-brand-accent);
+}
+.eyebrow-plain {
+  background: none;
+  padding: 0;
+}
+.eyebrow-plain::before { display: none; }
+.eyebrow-dark {
+  background: #ffffff14;
+  color: #ffffff;
+  box-shadow: inset 0 0 0 1px #ffffff26;
+}
+.eyebrow-dark::before { background: var(--color-brand-bright); }
+
+/* The card: white, softly lifted, with a hairline edge. Effects live on the
+   box edge only — never on the imagery inside it. */
+.rule-card,
+.card {
+  background: var(--color-brand-surface);
+  border: 1px solid var(--color-brand-rule);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+.card-lift {
+  box-shadow: var(--shadow-lift);
+}
+
+/* Accent phrase on a dark ground: the deep teal fails contrast on navy, so
+   the phrase stays white and carries a bright-teal rule beneath it instead. */
+.accent-on-dark {
+  color: #fff;
+  background-image: linear-gradient(var(--color-brand-bright), var(--color-brand-bright));
+  background-repeat: no-repeat;
+  background-size: 100% 0.12em;
+  background-position: 0 92%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3rem;
+  border-radius: 999px;
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  transition: background-color 200ms var(--ease-brand), box-shadow 200ms var(--ease-brand),
+    transform 200ms var(--ease-brand), color 200ms var(--ease-brand), border-color 200ms var(--ease-brand);
+}
+.btn-primary {
+  background: var(--color-brand-accent);
+  color: #fff;
+  box-shadow: var(--shadow-cta);
+}
+.btn-primary:hover { background: var(--color-brand-accent-strong); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0) scale(0.98); }
+.btn-primary:disabled { opacity: 0.8; transform: none; }
+.btn-secondary {
+  background: var(--color-brand-surface);
+  color: var(--tone-primary, var(--color-brand-primary));
+  box-shadow: inset 0 0 0 1.5px var(--color-brand-rule-strong);
+}
+.btn-secondary:hover { box-shadow: inset 0 0 0 1.5px var(--tone-primary, var(--color-brand-primary)); }
+.btn-secondary:active { transform: scale(0.98); }
+.btn-lg { min-height: 3.5rem; font-size: 1.0625rem; padding-inline: 2rem; }
+
+/* Section rhythm */
+.section { padding-block: 4.5rem; }
+@media (min-width: 1024px) { .section { padding-block: 6.5rem; } }
+
+.lede {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: color-mix(in srgb, var(--color-brand-ink) 72%, transparent);
+}
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Trust-band marquee. Transform-only, and frozen under reduced motion. */
+.marquee {
+  animation: ahs-marquee 45s linear infinite;
+}
+@keyframes ahs-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee { animation: none; transform: none; }
+}
+
+/* Testimonial row. The track is the fourteen scenarios twice over, so a reset
+   at exactly half its width lands on the second copy's first card. The gap
+   correction is half of the 1rem gap: the duplicate half carries one gap
+   fewer than a naive 50% assumes. Pauses on hover and on keyboard focus. */
+.scenario-track {
+  animation: ahs-scenarios 95s linear infinite;
+  will-change: transform;
+}
+@keyframes ahs-scenarios {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(calc(-50% - 0.5rem), 0, 0); }
+}
+.scenario-rail:hover .scenario-track,
+.scenario-rail:focus-within .scenario-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .scenario-track { animation: none; transform: none; }
+  .scenario-rail { overflow-x: auto; }
+}
+
+/* Legal-page prose. Scoped so it never leaks into marketing sections. */
+.legal h2 {
+  margin-top: 2.25rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-brand-primary);
+}
+.legal h3 {
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-brand-primary);
+}
+.legal p,
+.legal li {
+  margin-top: 0.85rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--color-brand-ink) 82%, transparent);
+}
+.legal ul {
+  margin-top: 0.5rem;
+  padding-left: 1.15rem;
+  list-style: disc;
+}
+.legal a {
+  color: var(--color-brand-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------------------------------------------------------------------------
+   Tone scopes. Sections alternate dark and light, and every box contrasts
+   with the ground it sits on: a light section holds navy boxes, a dark
+   section holds white boxes. Rather than restyling every component twice,
+   a scope remaps the colour roles, so `text-brand-ink`, `border-brand-rule`
+   and friends resolve correctly on either ground.
+     .tone-light  section on a light ground  -> its .card boxes go navy
+     .tone-dark   section on a navy ground   -> its .card boxes go white
+     .tone-reset  always light (the survey card)
+   Deep-teal text fails contrast on navy, so accent text turns bright teal
+   inside a dark scope; teal fills (buttons, dots) stay deep teal everywhere.
+--------------------------------------------------------------------------- */
+.tone-dark,
+.tone-light .card {
+  --color-brand-ink: #ffffff;
+  --color-brand-surface: #173966;
+  --color-brand-canvas: #ffffff12;
+  --color-brand-tint: #ffffff1f;
+  --color-brand-rule: #ffffff29;
+  --color-brand-rule-strong: #ffffff4d;
+  --color-brand-wash: #ffffff0f;
+  --color-brand-accent-wash: #ffffff1a;
+  --tone-primary: #ffffff;
+  --tone-accent: #3cc3db;
+  --eyebrow-bg: #ffffff14;
+  --eyebrow-fg: #ffffff;
+  --eyebrow-ring: inset 0 0 0 1px #ffffff26;
+  --shadow-card: 0 1px 2px #0e25471f, 0 18px 40px -16px #0e254773;
+  color: #ffffff;
+}
+.tone-light,
+.tone-dark .card,
+.tone-reset {
+  --color-brand-ink: #0d1c33;
+  --color-brand-surface: #ffffff;
+  --color-brand-canvas: #f4fafb;
+  --color-brand-tint: #ecf6f9;
+  --color-brand-rule: #1739661a;
+  --color-brand-rule-strong: #17396633;
+  --color-brand-wash: #1739660a;
+  --color-brand-accent-wash: #0b7f9712;
+  --tone-primary: #173966;
+  --tone-accent: #0b7f97;
+  --eyebrow-bg: #0b7f9712;
+  --eyebrow-fg: #0b7f97;
+  --eyebrow-ring: none;
+  --shadow-card: 0 1px 2px #0e25470a, 0 8px 24px -6px #0e254714;
+  color: #0d1c33;
+}
+.tone-dark .card {
+  --shadow-card: 0 1px 2px #00000014, 0 18px 44px -16px #00000059;
+}
+@layer utilities {
+  .text-brand-primary { color: var(--tone-primary, var(--color-brand-primary)); }
+  .text-brand-accent { color: var(--tone-accent, var(--color-brand-accent)); }
+}
+
+/* How it works: time left on the current step */
+@keyframes hiw-fill {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.hiw-fill {
+  animation: hiw-fill 6.5s linear forwards;
+}
