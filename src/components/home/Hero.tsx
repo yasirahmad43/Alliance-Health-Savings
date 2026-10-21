@@ -2,10 +2,8 @@ import SurveyForm from "@/components/SurveyForm";
 
 const BULLETS = [
   "Pre-existing conditions covered",
-  "Nationwide PPO doctor and hospital networks",
-  "Apply any day of the year — no enrollment window",
-  "One dedicated licensed advisor, start to finish",
-  "No pressure and no obligation to enroll",
+  "Nationwide PPO networks",
+  "Enroll any day of the year",
 ];
 
 export default function Hero() {
@@ -52,10 +50,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
-            Private PPO plans you can apply for any day of the year — with
-            pre-existing conditions covered. Tell us what you need and one
-            licensed advisor who actually picks up the phone walks you through
-            your options. No pressure, ever.
+            Private PPO plans, reviewed with you by a licensed advisor.
+            No pressure, ever.
           </p>
 
           <ul className="mt-8 grid max-w-xl gap-3 lg:mt-auto lg:pt-10">
