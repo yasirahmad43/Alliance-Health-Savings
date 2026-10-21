@@ -68,7 +68,7 @@ export default function Hero() {
           </ul>
         </div>
 
-        <div id="find-my-plans" className="scroll-mt-28">
+        <div id="find-my-plans" className="scroll-mt-28 lg:self-center">
           <SurveyForm formLocation="homepage-hero" variant="hero" />
         </div>
       </div>
