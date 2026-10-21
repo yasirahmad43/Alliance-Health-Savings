@@ -4,20 +4,21 @@ const BULLETS = [
   "Pre-existing conditions covered",
   "Nationwide PPO doctor and hospital networks",
   "Apply any day of the year — no enrollment window",
-  "One licensed advisor, not a call center",
+  "One dedicated licensed advisor, start to finish",
   "No pressure and no obligation to enroll",
 ];
 
 export default function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-brand-primary-strong text-white">
-      {/* Background film at full strength. On desktop only the left side
-          carries a gradient, so the headline reads and the footage stays
-          clearly visible across the rest of the frame. On phones the film
-          sits above the copy with no wash at all. */}
-      <div className="relative h-60 w-full sm:h-80 lg:absolute lg:inset-0 lg:h-full">
+      {/* Background film behind the copy on every screen size. On desktop
+          only the left side carries a gradient, so the headline reads and the
+          footage stays clearly visible across the rest of the frame. On phones
+          the copy covers the whole frame, so a top-to-bottom navy wash keeps
+          the white headline readable over the footage. */}
+      <div className="absolute inset-x-0 top-0 h-[36rem] sm:h-[40rem] lg:inset-0 lg:h-full">
         <video
-          className="size-full object-cover"
+          className="size-full object-cover object-[68%_50%] lg:object-center"
           autoPlay
           muted
           loop
@@ -28,6 +29,10 @@ export default function Hero() {
         >
           <source src="/media/film-home.mp4" type="video/mp4" />
         </video>
+        <div
+          className="absolute inset-0 bg-[linear-gradient(180deg,#0e254759_0%,#0e254780_45%,#0e2547d9_80%,#0e2547_100%)] lg:hidden"
+          aria-hidden="true"
+        />
         <div
           className="absolute inset-0 hidden bg-[linear-gradient(90deg,#0e2547e6_0%,#0e2547b3_38%,#0e254733_68%,#0e25471a_100%)] lg:block"
           aria-hidden="true"
@@ -41,16 +46,16 @@ export default function Hero() {
           <h1 className="mt-6 text-[2.5rem] font-bold leading-[1.04] sm:text-6xl lg:text-[4.25rem]">
             Real health coverage.
             <br />
-            Reviewed by a person.
+            Real advisors.
             <br />
-            <span className="accent-on-dark">Not a call center.</span>
+            <span className="accent-on-dark">Real savings.</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
             Private PPO plans you can apply for any day of the year — with
             pre-existing conditions covered. Tell us what you need and one
-            licensed advisor reviews it with you. Real options. Real advisors.
-            Zero pressure.
+            licensed advisor who actually picks up the phone walks you through
+            your options. No pressure, ever.
           </p>
 
           <ul className="mt-8 grid max-w-xl gap-3 lg:mt-auto lg:pt-10">

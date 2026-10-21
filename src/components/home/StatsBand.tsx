@@ -6,7 +6,7 @@ import { useReducedMotion } from "framer-motion";
 const STATS = [
   { value: 50, suffix: "", label: "States with licensed advisors" },
   { value: 365, suffix: "", label: "Days a year you can apply" },
-  { value: 1, suffix: "", label: "Advisor who calls you — not a call center" },
+  { value: 1, suffix: "", label: "Dedicated licensed advisor who calls you" },
   { value: 0, suffix: "", label: "Pressure to take a plan you don't want" },
 ];
 
