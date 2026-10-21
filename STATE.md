@@ -3,11 +3,12 @@
 **Mode:** build · **Status:** LIVE on Vercel, awaiting operator values.
 
 ## Live
-- Production: https://alliance-health-savings.vercel.app
+- Production: https://alliancehealthsavings.com (www 308-redirects to apex); also https://alliance-health-savings.vercel.app
 - Vercel project `alliance-health-savings` (prj_ftW0CYzq4lBJeWlcz1nq1RRIqDV4, team yasirahmad43s-projects),
   linked to github.com/yasirahmad43/Alliance-Health-Savings — a push to `claude/sweet-carson-qwb59k`
   (the repo's default branch) redeploys production. Vercel Authentication applies to previews only.
-- Env set: `NEXT_PUBLIC_SITE_URL` = https://alliance-health-savings.vercel.app (change when the domain is pointed).
+- DNS at Squarespace (2026-10-21): A @ 216.150.1.1 / 216.150.16.1, CNAME www -> 81bc12a1e901ebd0.vercel-dns-016.com. Vercel reports configured.
+- Env set: `NEXT_PUBLIC_SITE_URL` = https://alliancehealthsavings.com, `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY` (insert-only).
 
 ## Verified 2026-10-20
 - `next build` + `tsc --noEmit` clean, 75 routes.
@@ -23,15 +24,13 @@ photography and video regenerated for this brand. See BRAND.md.
 `legalName` · `phoneDisplay`/`phoneTel` (+`showPhone:false`) · `email` · `npn` · `socials`
 
 ## Lead pipeline
-Schema ready in `supabase/migrations/0001_leads.sql` (same columns as AHC, RLS insert-only).
-Supabase MCP `create_project` timed out 4x on 2026-10-20/21 (cost-confirmation step never
-returns in the cloud session) — create the project in the dashboard, then apply the migration.
-`POST /api/lead` is wired for Supabase + `LEAD_WEBHOOK_URL`. Neither is
-configured for this brand yet — until they are, submissions validate, pass the
-anti-spam checks and redirect to /thank-you, but are not stored. Needed:
-- `NEXT_PUBLIC_SUPABASE_URL` + `SUPABASE_PUBLISHABLE_KEY` (or service role key) for a NEW Supabase project with a `leads` table
-- `LEAD_WEBHOOK_URL` — this brand's own Zapier catch hook
-- `NEXT_PUBLIC_SITE_URL` once the domain is pointed
+- Supabase project `alliance-health-savings` / ref `fcrkrofyyjvmpplrnrwh` (us-east-1), created by Daniel in the dashboard 2026-10-21
+  (MCP `create_project` timed out at the cost-confirmation step every time).
+- `public.leads` from `supabase/migrations/0001_leads.sql`: 26 columns, RLS on, one INSERT-only policy for anon/authenticated.
+  Verified with an insert as role `anon` inside a rolled-back transaction; table left empty.
+- `apply_migration` and multi-statement `execute_sql` time out on this project; single statements work.
+- NOT yet verified end to end from the live form (this container cannot reach the live site or supabase.co).
+- `LEAD_WEBHOOK_URL` still not set — Supabase is the only destination.
 
 ## Carrier logos
 Inherited from the AHC build (public/carriers). Confirm appointments / permission before launch.
