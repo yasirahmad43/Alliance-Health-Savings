@@ -23,6 +23,9 @@ photography and video regenerated for this brand. See BRAND.md.
 `legalName` · `phoneDisplay`/`phoneTel` (+`showPhone:false`) · `email` · `npn` · `socials`
 
 ## Lead pipeline
+Schema ready in `supabase/migrations/0001_leads.sql` (same columns as AHC, RLS insert-only).
+Supabase MCP `create_project` timed out 4x on 2026-10-20/21 (cost-confirmation step never
+returns in the cloud session) — create the project in the dashboard, then apply the migration.
 `POST /api/lead` is wired for Supabase + `LEAD_WEBHOOK_URL`. Neither is
 configured for this brand yet — until they are, submissions validate, pass the
 anti-spam checks and redirect to /thank-you, but are not stored. Needed:
