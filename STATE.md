@@ -29,8 +29,11 @@ photography and video regenerated for this brand. See BRAND.md.
 - `public.leads` from `supabase/migrations/0001_leads.sql`: 26 columns, RLS on, one INSERT-only policy for anon/authenticated.
   Verified with an insert as role `anon` inside a rolled-back transaction; table left empty.
 - `apply_migration` and multi-statement `execute_sql` time out on this project; single statements work.
-- NOT yet verified end to end from the live form (this container cannot reach the live site or supabase.co).
-- `LEAD_WEBHOOK_URL` still not set — Supabase is the only destination.
+- `LEAD_WEBHOOK_URL` set (Zapier catch hook 11706715/41nve99) on 2026-10-22, production redeployed.
+- End-to-end verified 2026-10-22: POST https://alliancehealthsavings.com/api/lead from a Vercel sandbox -> 200 {ok:true},
+  row stored in Supabase with every field, runtime log `[lead] forwarded` (webhook fetch completed; the route does not log Zapier's status code).
+- Test row `test.lead@d1techcreative.com` (id 72bf47bc…) is still in `leads`: the MCP delete timed out (destructive SQL needs a confirmation
+  this session can't show). Delete it in the dashboard.
 
 ## Carrier logos
 Inherited from the AHC build (public/carriers). Confirm appointments / permission before launch.
