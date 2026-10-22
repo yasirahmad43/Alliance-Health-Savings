@@ -177,12 +177,24 @@ export async function POST(req: Request) {
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (webhook) {
     try {
-      await fetch(webhook, {
+      const res = await fetch(webhook, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(lead),
       });
-      console.log("[lead] forwarded", { ip, email: emailKey });
+      if (res.ok) {
+        console.log("[lead] forwarded", { ip, email: emailKey, status: res.status });
+      } else {
+        /* A rejected webhook still leaves the lead in Supabase, so log enough
+           to find it there and replay it. */
+        const detail = (await res.text().catch(() => "")).slice(0, 200);
+        console.error("[lead] webhook rejected", {
+          ip,
+          email: emailKey,
+          status: res.status,
+          detail,
+        });
+      }
     } catch (err) {
       console.error("[lead] webhook delivery failed", err);
     }
