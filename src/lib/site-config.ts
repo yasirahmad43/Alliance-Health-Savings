@@ -12,10 +12,10 @@ export const siteConfig = {
   description:
     "Private PPO health coverage reviewed by a licensed advisor — available any day of the year, with pre-existing conditions covered.",
 
-  /* Phone is hidden everywhere until a real number exists. Never ship a placeholder. */
-  phoneDisplay: "",
-  phoneTel: "",
-  showPhone: false,
+  /* Real number supplied by Daniel 2026-10-24. Set showPhone false to hide it everywhere. */
+  phoneDisplay: "(910) 466-7914",
+  phoneTel: "+19104667914",
+  showPhone: true,
 
   email: "",
   /* Compact form used in the topbar, footer and thank-you page. */
