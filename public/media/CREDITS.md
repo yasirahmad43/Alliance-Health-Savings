@@ -7,7 +7,8 @@ in the family, and none of it depicts a real, identifiable person.
 
 | File(s) | What it shows | Used on |
 |---|---|---|
-| `film-home.mp4/.webp` | Family of four laughing together on their front porch | Homepage hero |
+| `hero-desktop.mp4/.webp` | Family of four on their front lawn, framed for the 16:9 desktop hero (Nano Banana 2 still, animated with Kling 3.0 pro, 1080p) | Homepage hero, desktop |
+| `hero-mobile.mp4/.webp` | Same family, vertical 9:16 cut for phones | Homepage hero, mobile |
 | `film-about` | Advisors with headsets in a bright office | /about hero |
 | `film-compare` | Couple comparing options on a laptop in a kitchen | /compare hero |
 | `film-contact` | Woman on a phone call in a bright living room | /contact hero |

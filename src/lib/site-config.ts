@@ -18,19 +18,13 @@ export const siteConfig = {
   showPhone: true,
 
   email: "",
-  /* Compact form used in the topbar, footer and thank-you page. */
-  hours: "Mon–Fri 8am–8pm · Sat 9am–5pm ET",
-  /* The same advisor hours written out in each continental zone, so a caller
-     in Phoenix or Portland does not have to do the arithmetic. Derived from
-     the Eastern hours above — change one and change the rest. */
-  hoursByZone: [
-    { zone: "Eastern", abbr: "ET", weekdays: "8:00am – 8:00pm", saturday: "9:00am – 5:00pm" },
-    { zone: "Central", abbr: "CT", weekdays: "7:00am – 7:00pm", saturday: "8:00am – 4:00pm" },
-    { zone: "Mountain", abbr: "MT", weekdays: "6:00am – 6:00pm", saturday: "7:00am – 3:00pm" },
-    { zone: "Pacific", abbr: "PT", weekdays: "5:00am – 5:00pm", saturday: "6:00am – 2:00pm" },
-  ] as { zone: string; abbr: string; weekdays: string; saturday: string }[],
-  /* Alaska and Hawaii are served, but by callback rather than posted hours. */
-  hoursNote: "Closed Sunday. Alaska and Hawaii are served by scheduled callback — tell us a time that works and an advisor will call then.",
+  /* Advisor hours, kept in Eastern Time. components/Hours.tsx converts them
+     into every US zone and shows the visitor's own zone first, so change
+     only these two values. */
+  hours: "Mon–Fri 9am–6pm ET",
+  hoursDays: "Mon–Fri",
+  hoursET: [9, 18] as [number, number],
+  hoursNote: "Closed Saturday and Sunday.",
   serviceArea: "All 50 states",
   npn: "", // blank = the licensing line is omitted entirely
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageHero from "@/components/PageHero";
 import { siteConfig } from "@/lib/site-config";
+import { Hours } from "@/components/Hours";
 
 export const metadata: Metadata = {
   title: "Thank you",
@@ -35,9 +36,7 @@ export default function ThankYouPage() {
                 >
                   {siteConfig.phoneDisplay}
                 </a>
-                {siteConfig.hours && (
-                  <p className="mt-2 text-sm text-brand-ink/65">{siteConfig.hours}</p>
-                )}
+                <Hours className="mt-1 text-sm text-white/70" />
               </>
             ) : (
               <p className="text-[15.5px] text-brand-ink/80">

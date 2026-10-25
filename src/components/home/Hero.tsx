@@ -1,4 +1,5 @@
 import SurveyForm from "@/components/SurveyForm";
+import HeroVideo from "@/components/home/HeroVideo";
 
 const BULLETS = [
   "Pre-existing conditions covered",
@@ -15,18 +16,7 @@ export default function Hero() {
           the copy covers the whole frame, so a top-to-bottom navy wash keeps
           the white headline readable over the footage. */}
       <div className="absolute inset-x-0 top-0 h-[36rem] sm:h-[40rem] lg:inset-0 lg:h-full">
-        <video
-          className="size-full object-cover object-[68%_50%] lg:object-center"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/media/film-home.webp"
-          aria-hidden="true"
-        >
-          <source src="/media/film-home.mp4" type="video/mp4" />
-        </video>
+        <HeroVideo />
         <div
           className="absolute inset-0 bg-[linear-gradient(180deg,#0e254759_0%,#0e254780_45%,#0e2547d9_80%,#0e2547_100%)] lg:hidden"
           aria-hidden="true"

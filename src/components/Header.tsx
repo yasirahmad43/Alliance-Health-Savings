@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import SurveyCTA from "@/components/SurveyCTA";
 import { siteConfig } from "@/lib/site-config";
+import { Hours } from "@/components/Hours";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Header() {
             Licensed advisors in all 50 states
           </p>
           <div className="hidden items-center gap-6 text-white/75 sm:flex">
-            {siteConfig.hours && <span>{siteConfig.hours}</span>}
+            <Hours variant="popover" icon />
             {siteConfig.showPhone && siteConfig.phoneTel && (
               <a href={`tel:${siteConfig.phoneTel}`} className="font-semibold text-white hover:text-white/80">
                 {siteConfig.phoneDisplay}

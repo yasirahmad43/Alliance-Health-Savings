@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SurveyCTA from "@/components/SurveyCTA";
 import { siteConfig } from "@/lib/site-config";
+import { Hours } from "@/components/Hours";
 import { comparisons } from "@/data/comparisons";
 
 const legal = [
@@ -60,9 +61,7 @@ export default function Footer() {
                 {siteConfig.email}
               </a>
             )}
-            {siteConfig.hours && (
-              <p className="mt-1 text-sm text-white/60">{siteConfig.hours}</p>
-            )}
+            <Hours className="mt-1 text-sm text-white/70" />
           </div>
 
           <nav aria-label="Compare">
